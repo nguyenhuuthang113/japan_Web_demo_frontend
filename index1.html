@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kimono Studio - Dịch vụ thuê kimono chuyên nghiệp</title>
+
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#c62828",
+                        secondary: "#8d6e63",
+                    },
+                    borderRadius: {
+                        none: "0px",
+                        sm: "4px",
+                        DEFAULT: "8px",
+                        md: "12px",
+                        lg: "16px",
+                        xl: "20px",
+                        "2xl": "24px",
+                        "3xl": "32px",
+                        full: "9999px",
+                        button: "8px",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet" />
+
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 300;
+        }
+
+        .hero-bg {
+            background-image: url('https://readdy.ai/api/search-image?query=elegant%20japanese%20woman%20wearing%20traditional%20red%20kimono%20in%20modern%20studio%20with%20soft%20lighting%20and%20wooden%20elements%20minimalist%20white%20background%20professional%20photography%20style%20serene%20atmosphere%20cultural%20beauty&width=1920&height=1080&seq=hero001&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item {
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            background-color: #c62828;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .language-dropdown {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .language-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="font-['Pacifico'] text-2xl text-primary">
+                        Kimono Studio
+                    </div>
+                </div>
+
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#" class="nav-link text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Giới
+                            thiệu</a>
+                        <a href="#" class="nav-link text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Dịch
+                            vụ</a>
+                        <a href="#" class="nav-link text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Bộ
+                            sưu tập</a>
+                        <a href="#" class="nav-link text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Tin
+                            tức</a>
+                        <a href="#" class="nav-link text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Đặt
+                            lịch</a>
+                        <a href="#" class="nav-link text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Liên
+                            hệ</a>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="languageBtn"
+                            class="flex items-center space-x-1 text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">
+                            <span>VN</span>
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-arrow-down-s-line"></i>
+                            </div>
+                        </button>
+                        <div id="languageDropdown"
+                            class="language-dropdown absolute right-0 mt-2 w-20 bg-white rounded-md shadow-lg py-1">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">VN</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">EN</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">JP</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-3">
+                        <a href="#" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobileMenuBtn" class="w-8 h-8 flex items-center justify-center text-gray-700">
+                        <i class="ri-menu-line"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div id="mobileMenu" class="mobile-menu md:hidden fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50">
+            <div class="p-4">
+                <div class="flex items-center justify-between mb-8">
+                    <div class="font-['Pacifico'] text-xl text-primary">
+                        Kimono Studio
+                    </div>
+                    <button id="closeMobileMenu" class="w-8 h-8 flex items-center justify-center text-gray-700">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+
+                <nav class="space-y-4">
+                    <a href="#" class="block text-gray-700 hover:text-primary py-2">Giới thiệu</a>
+                    <a href="#" class="block text-gray-700 hover:text-primary py-2">Dịch vụ</a>
+                    <a href="#" class="block text-gray-700 hover:text-primary py-2">Bộ sưu tập</a>
+                    <a href="#" class="block text-gray-700 hover:text-primary py-2">Tin tức</a>
+                    <a href="#" class="block text-gray-700 hover:text-primary py-2">Đặt lịch</a>
+                    <a href="#" class="block text-gray-700 hover:text-primary py-2">Liên hệ</a>
+                </nav>
+
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <a href="#" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-primary">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                    </div>
+
+                    <div class="flex space-x-2">
+                        <button class="px-3 py-1 text-sm text-gray-700 hover:text-primary">
+                            VN
+                        </button>
+                        <button class="px-3 py-1 text-sm text-gray-700 hover:text-primary">
+                            EN
+                        </button>
+                        <button class="px-3 py-1 text-sm text-gray-700 hover:text-primary">
+                            JP
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-bg relative h-screen flex items-center">
+            <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="max-w-2xl">
+                    <h1 class="text-4xl md:text-6xl font-light text-white mb-6 leading-tight">
+                        Trải nghiệm<br />
+                        <span class="text-primary font-medium">Kimono</span><br />
+                        truyền thống Nhật Bản
+                    </h1>
+                    <p class="text-xl text-gray-200 mb-8 font-light leading-relaxed">
+                        Khám phá vẻ đẹp tinh tế của văn hóa Nhật Bản với dịch vụ thuê
+                        kimono chuyên nghiệp. Từ kimono truyền thống đến hiện đại, chúng
+                        tôi mang đến cho bạn trải nghiệm hoàn hảo nhất.
+                    </p>
+                    <button
+                        class="bg-primary hover:bg-red-700 text-white px-8 py-4 !rounded-button text-lg font-medium transition-colors whitespace-nowrap">
+                        Đặt lịch ngay
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-light text-gray-900 mb-6">
+                        Dịch vụ của chúng tôi
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto font-light">
+                        Chúng tôi cung cấp đa dạng các gói dịch vụ thuê kimono, từ truyền
+                        thống đến hiện đại, phù hợp với mọi dịp đặc biệt và sở thích cá
+                        nhân.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="service-card bg-white rounded-lg overflow-hidden shadow-sm">
+                        <div class="h-64 bg-cover bg-center"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=elegant%20traditional%20red%20kimono%20with%20gold%20patterns%20displayed%20on%20wooden%20stand%20in%20minimalist%20white%20studio%20soft%20natural%20lighting%20japanese%20cultural%20heritage%20luxury%20fabric%20details&width=400&height=300&seq=service001&orientation=landscape')">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-medium text-gray-900 mb-3">
+                                Kimono Truyền thống
+                            </h3>
+                            <p class="text-gray-600 mb-4 font-light">
+                                Kimono chính thống với họa tiết tinh xảo, phù hợp cho các dịp
+                                lễ hội và sự kiện đặc biệt.
+                            </p>
+                            <div class="text-primary font-medium text-lg mb-4">
+                                Từ 800.000 VNĐ/ngày
+                            </div>
+                            <button
+                                class="w-full bg-primary hover:bg-red-700 text-white py-3 !rounded-button font-medium transition-colors whitespace-nowrap">
+                                Xem chi tiết
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="service-card bg-white rounded-lg overflow-hidden shadow-sm">
+                        <div class="h-64 bg-cover bg-center"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=modern%20casual%20kimono%20style%20clothing%20in%20soft%20pastel%20colors%20hanging%20on%20wooden%20rack%20contemporary%20japanese%20fashion%20minimalist%20white%20background%20natural%20lighting%20trendy%20design&width=400&height=300&seq=service002&orientation=landscape')">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-medium text-gray-900 mb-3">
+                                Kimono Hiện đại
+                            </h3>
+                            <p class="text-gray-600 mb-4 font-light">
+                                Thiết kế hiện đại kết hợp phong cách truyền thống, thích hợp
+                                cho chụp ảnh và dạo phố.
+                            </p>
+                            <div class="text-primary font-medium text-lg mb-4">
+                                Từ 600.000 VNĐ/ngày
+                            </div>
+                            <button
+                                class="w-full bg-primary hover:bg-red-700 text-white py-3 !rounded-button font-medium transition-colors whitespace-nowrap">
+                                Xem chi tiết
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="service-card bg-white rounded-lg overflow-hidden shadow-sm">
+                        <div class="h-64 bg-cover bg-center"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=complete%20kimono%20accessories%20set%20including%20obi%20belt%20geta%20sandals%20hair%20ornaments%20and%20traditional%20bags%20arranged%20on%20wooden%20surface%20white%20background%20japanese%20cultural%20items&width=400&height=300&seq=service003&orientation=landscape')">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-medium text-gray-900 mb-3">
+                                Gói Phụ kiện
+                            </h3>
+                            <p class="text-gray-600 mb-4 font-light">
+                                Bộ phụ kiện hoàn chỉnh bao gồm obi, geta, túi xách và trang
+                                sức truyền thống.
+                            </p>
+                            <div class="text-primary font-medium text-lg mb-4">
+                                Từ 300.000 VNĐ/ngày
+                            </div>
+                            <button
+                                class="w-full bg-primary hover:bg-red-700 text-white py-3 !rounded-button font-medium transition-colors whitespace-nowrap">
+                                Xem chi tiết
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-light text-gray-900 mb-6">
+                        Bộ sưu tập
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto font-light">
+                        Khám phá những khoảnh khắc đẹp nhất của khách hàng trong trang
+                        phục kimono truyền thống.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="gallery-item overflow-hidden rounded-lg">
+                        <div class="h-64 bg-cover bg-center cursor-pointer"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=beautiful%20asian%20woman%20wearing%20elegant%20red%20kimono%20with%20traditional%20makeup%20and%20hairstyle%20in%20japanese%20garden%20setting%20professional%20portrait%20photography%20cultural%20beauty&width=300&height=400&seq=gallery001&orientation=portrait')">
+                        </div>
+                    </div>
+                    <div class="gallery-item overflow-hidden rounded-lg">
+                        <div class="h-64 bg-cover bg-center cursor-pointer"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=young%20couple%20wearing%20matching%20traditional%20japanese%20kimono%20walking%20in%20bamboo%20forest%20romantic%20cultural%20experience%20soft%20natural%20lighting%20authentic%20japanese%20atmosphere&width=300&height=400&seq=gallery002&orientation=portrait')">
+                        </div>
+                    </div>
+                    <div class="gallery-item overflow-hidden rounded-lg">
+                        <div class="h-64 bg-cover bg-center cursor-pointer"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=family%20group%20wearing%20colorful%20traditional%20kimono%20in%20modern%20japanese%20studio%20with%20wooden%20elements%20multi%20generational%20cultural%20celebration%20professional%20family%20portrait&width=300&height=400&seq=gallery003&orientation=portrait')">
+                        </div>
+                    </div>
+                    <div class="gallery-item overflow-hidden rounded-lg">
+                        <div class="h-64 bg-cover bg-center cursor-pointer"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=elegant%20woman%20in%20pastel%20pink%20kimono%20sitting%20in%20traditional%20japanese%20tea%20ceremony%20setting%20serene%20atmosphere%20cultural%20authenticity%20soft%20lighting&width=300&height=400&seq=gallery004&orientation=portrait')">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <button
+                        class="bg-secondary hover:bg-amber-700 text-white px-8 py-3 !rounded-button font-medium transition-colors whitespace-nowrap">
+                        Xem thêm ảnh
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-light text-gray-900 mb-6">
+                        Tin tức & Sự kiện
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto font-light">
+                        Cập nhật những thông tin mới nhất về văn hóa Nhật Bản và các sự
+                        kiện đặc biệt.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <article class="bg-white rounded-lg overflow-hidden shadow-sm">
+                        <div class="h-48 bg-cover bg-center"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=traditional%20japanese%20cherry%20blossom%20festival%20with%20people%20wearing%20kimono%20celebrating%20under%20sakura%20trees%20cultural%20event%20spring%20celebration%20authentic%20atmosphere&width=400&height=250&seq=news001&orientation=landscape')">
+                        </div>
+                        <div class="p-6">
+                            <div class="text-sm text-gray-500 mb-2">15 Tháng 8, 2025</div>
+                            <h3 class="text-xl font-medium text-gray-900 mb-3">
+                                Lễ hội Hoa anh đào 2025
+                            </h3>
+                            <p class="text-gray-600 mb-4 font-light">
+                                Tham gia lễ hội hoa anh đào với trang phục kimono truyền
+                                thống. Ưu đãi đặc biệt cho khách hàng đăng ký sớm.
+                            </p>
+                            <button class="text-primary hover:text-red-700 font-medium whitespace-nowrap">
+                                Đọc thêm →
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="bg-white rounded-lg overflow-hidden shadow-sm">
+                        <div class="h-48 bg-cover bg-center"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=behind%20the%20scenes%20kimono%20dressing%20process%20professional%20staff%20helping%20customer%20wear%20traditional%20japanese%20clothing%20studio%20setting%20cultural%20service%20experience&width=400&height=250&seq=news002&orientation=landscape')">
+                        </div>
+                        <div class="p-6">
+                            <div class="text-sm text-gray-500 mb-2">10 Tháng 8, 2025</div>
+                            <h3 class="text-xl font-medium text-gray-900 mb-3">
+                                Quy trình mặc kimono chuyên nghiệp
+                            </h3>
+                            <p class="text-gray-600 mb-4 font-light">
+                                Tìm hiểu về quy trình mặc kimono truyền thống và những điều
+                                cần biết khi trải nghiệm dịch vụ của chúng tôi.
+                            </p>
+                            <button class="text-primary hover:text-red-700 font-medium whitespace-nowrap">
+                                Đọc thêm →
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="bg-white rounded-lg overflow-hidden shadow-sm">
+                        <div class="h-48 bg-cover bg-center"
+                            style="background-image: url('https://readdy.ai/api/search-image?query=collection%20of%20various%20traditional%20japanese%20kimono%20patterns%20and%20designs%20displayed%20in%20modern%20gallery%20setting%20cultural%20heritage%20textile%20art%20museum%20quality&width=400&height=250&seq=news003&orientation=landscape')">
+                        </div>
+                        <div class="p-6">
+                            <div class="text-sm text-gray-500 mb-2">5 Tháng 8, 2025</div>
+                            <h3 class="text-xl font-medium text-gray-900 mb-3">
+                                Bộ sưu tập kimono mới 2025
+                            </h3>
+                            <p class="text-gray-600 mb-4 font-light">
+                                Ra mắt bộ sưu tập kimono mới với những họa tiết độc đáo và màu
+                                sắc tươi mới cho mùa thu 2025.
+                            </p>
+                            <button class="text-primary hover:text-red-700 font-medium whitespace-nowrap">
+                                Đọc thêm →
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-primary">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-light text-white mb-6">
+                    Sẵn sàng trải nghiệm?
+                </h2>
+                <p class="text-xl text-red-100 mb-8 font-light">
+                    Đặt lịch ngay hôm nay để có được trải nghiệm kimono tuyệt vời nhất
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button
+                        class="bg-white hover:bg-gray-100 text-primary px-8 py-4 !rounded-button text-lg font-medium transition-colors whitespace-nowrap">
+                        Đặt lịch ngay
+                    </button>
+                    <button
+                        class="border-2 border-white hover:bg-white hover:text-primary text-white px-8 py-4 !rounded-button text-lg font-medium transition-colors whitespace-nowrap">
+                        Liên hệ tư vấn
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-secondary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="font-['Pacifico'] text-2xl text-white mb-4">
+                        Kimono Studio
+                    </div>
+                    <p class="text-amber-100 mb-6 font-light leading-relaxed">
+                        Chúng tôi mang đến trải nghiệm kimono truyền thống Nhật Bản chất
+                        lượng cao với dịch vụ chuyên nghiệp và tận tâm.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors">
+                            <i class="ri-line-fill"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 flex items-center justify-center bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors">
+                            <i class="ri-whatsapp-line"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-medium text-white mb-4">Liên hệ</h3>
+                    <div class="space-y-3 text-amber-100 font-light">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-phone-line"></i>
+                            </div>
+                            <span>+84 123 456 789</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-mail-line"></i>
+                            </div>
+                            <span>info@kimonostudio.vn</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-5 h-5 flex items-center justify-center mt-1">
+                                <i class="ri-map-pin-line"></i>
+                            </div>
+                            <span>123 Nguyễn Huệ, Quận 1<br />TP. Hồ Chí Minh</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-medium text-white mb-4">Giờ mở cửa</h3>
+                    <div class="space-y-2 text-amber-100 font-light">
+                        <div>Thứ 2 - Thứ 6: 9:00 - 18:00</div>
+                        <div>Thứ 7 - Chủ nhật: 8:00 - 19:00</div>
+                        <div class="text-sm mt-4">
+                            * Đặt lịch trước 24h để được phục vụ tốt nhất
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-amber-200 border-opacity-30 mt-12 pt-8 text-center">
+                <p class="text-amber-100 font-light">
+                    © 2025 Kimono Studio. Tất cả quyền được bảo lưu.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script id="navigation-script">
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+            const closeMobileMenu = document.getElementById("closeMobileMenu");
+
+            mobileMenuBtn.addEventListener("click", function () {
+                mobileMenu.classList.add("active");
+            });
+
+            closeMobileMenu.addEventListener("click", function () {
+                mobileMenu.classList.remove("active");
+            });
+
+            document.addEventListener("click", function (e) {
+                if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenu.classList.remove("active");
+                }
+            });
+        });
+    </script>
+
+    <script id="language-dropdown-script">
+        document.addEventListener("DOMContentLoaded", function () {
+            const languageBtn = document.getElementById("languageBtn");
+            const languageDropdown = document.getElementById("languageDropdown");
+
+            if (languageBtn && languageDropdown) {
+                languageBtn.addEventListener("click", function () {
+                    languageDropdown.classList.toggle("active");
+                });
+
+                document.addEventListener("click", function (e) {
+                    if (
+                        !languageBtn.contains(e.target) &&
+                        !languageDropdown.contains(e.target)
+                    ) {
+                        languageDropdown.classList.remove("active");
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script id="smooth-scroll-script">
+        document.addEventListener("DOMContentLoaded", function () {
+            const links = document.querySelectorAll('a[href^="#"]');
+
+            links.forEach((link) => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute("href");
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
