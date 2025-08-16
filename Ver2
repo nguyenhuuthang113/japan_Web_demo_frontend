@@ -1,1 +1,795 @@
+<!DOCTYPE html>
+<html lang="vi">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Kimono Studio - Dịch vụ thuê Kimono chuyên nghiệp</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+
+    <style>
+        :root {
+            --primary-white: #ffffff;
+            --primary-red: #c62828;
+            --wood-brown: #8d6e63;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333333;
+        }
+
+        * {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-white);
+            color: var(--dark-gray);
+            font-weight: 300;
+        }
+
+        .navbar {
+            background-color: var(--primary-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-red) !important;
+            font-size: 1.8rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--dark-gray) !important;
+            font-weight: 400;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-red) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+            font-weight: 500;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #b71c1c;
+            border-color: #b71c1c;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-primary {
+            color: var(--primary-red);
+            border-color: var(--primary-red);
+            font-weight: 500;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+        }
+
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://readdy.ai/api/search-image?query=elegant%20japanese%20woman%20wearing%20beautiful%20red%20kimono%20in%20traditional%20studio%20with%20wooden%20elements%20and%20soft%20lighting%20professional%20photography&width=1920&height=1080&seq=hero1&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title {
+            color: var(--primary-red);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--wood-brown);
+        }
+
+        .service-card {
+            background: var(--primary-white);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .service-card .card-body {
+            padding: 2rem;
+        }
+
+        .price {
+            color: var(--primary-red);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .gallery-item {
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .news-card {
+            background: var(--primary-white);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .booking-form {
+            background: var(--light-gray);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            padding: 0.75rem 1rem;
+            font-weight: 300;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 0.2rem rgba(198, 40, 40, 0.25);
+        }
+
+        .footer {
+            background-color: var(--wood-brown);
+            color: var(--primary-white);
+            padding: 3rem 0 1rem;
+            margin-top: 5rem;
+        }
+
+        .footer h5 {
+            color: var(--primary-white);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer a {
+            color: var(--primary-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-red);
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-red);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: #b71c1c;
+        }
+
+        .language-switcher .dropdown-toggle {
+            background: none;
+            border: 1px solid var(--primary-red);
+            color: var(--primary-red);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .intro-section {
+            padding: 5rem 0;
+            background-color: var(--light-gray);
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-gray);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-red);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-torii-gate me-2"></i>Sakura Studio
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Dịch vụ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Bộ sưu tập</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#news">Tin tức</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#booking">Đặt lịch</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Liên hệ</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center">
+                    <div class="social-icons me-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+
+                    <div class="language-switcher">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-globe me-1"></i>VN
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Tiếng Việt</a></li>
+                                <li><a class="dropdown-item" href="#">English</a></li>
+                                <li><a class="dropdown-item" href="#">日本語</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <h1>Trải nghiệm vẻ đẹp Kimono truyền thống</h1>
+                        <p>Khám phá nét đẹp tinh tế của văn hóa Nhật Bản với dịch vụ cho thuê Kimono chuyên nghiệp và
+                            chụp ảnh nghệ thuật tại studio hiện đại.</p>
+                        <a href="#booking" class="btn btn-primary btn-lg">Đặt lịch ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="intro-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Về chúng tôi</h2>
+                    <div class="intro-text">
+                        <p>Sakura Studio là điểm đến lý tưởng cho những ai yêu thích văn hóa Nhật Bản và muốn trải
+                            nghiệm vẻ đẹp truyền thống của trang phục Kimono.</p>
+                        <p>Với bộ sưu tập Kimono đa dạng từ truyền thống đến hiện đại, cùng đội ngũ chuyên gia trang
+                            điểm và nhiếp ảnh giàu kinh nghiệm, chúng tôi cam kết mang đến cho bạn những khoảnh khắc đẹp
+                            nhất.</p>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-4 text-center mb-3">
+                            <div class="feature-icon">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <h6>Kimono chính hãng</h6>
+                        </div>
+                        <div class="col-md-4 text-center mb-3">
+                            <div class="feature-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <h6>Chụp ảnh chuyên nghiệp</h6>
+                        </div>
+                        <div class="col-md-4 text-center mb-3">
+                            <div class="feature-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h6>Trang điểm nghệ thuật</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://readdy.ai/api/search-image?query=traditional%20japanese%20kimono%20display%20in%20elegant%20studio%20with%20wooden%20interior%20and%20soft%20lighting%20professional%20photography&width=600&height=400&seq=about1&orientation=landscape"
+                        alt="Studio Kimono" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Dịch vụ của chúng tôi</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <img src="https://readdy.ai/api/search-image?query=elegant%20woman%20wearing%20traditional%20red%20kimono%20with%20gold%20patterns%20in%20japanese%20studio%20professional%20photography&width=400&height=250&seq=service1&orientation=landscape"
+                            alt="Gói Cơ Bản">
+                        <div class="card-body">
+                            <h5>Gói Cơ Bản</h5>
+                            <p class="price">899.000 VNĐ</p>
+                            <p>Thời gian: 2 giờ</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Kimono truyền thống</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Phụ kiện đầy đủ</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Trang điểm cơ bản</li>
+                                <li><i class="fas fa-check text-success me-2"></i>10 ảnh đã chỉnh sửa</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100">Đặt gói này</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <img src="https://readdy.ai/api/search-image?query=beautiful%20woman%20in%20premium%20blue%20kimono%20with%20intricate%20patterns%20in%20luxury%20japanese%20studio%20setting%20professional%20photography&width=400&height=250&seq=service2&orientation=landscape"
+                            alt="Gói Cao Cấp">
+                        <div class="card-body">
+                            <h5>Gói Cao Cấp</h5>
+                            <p class="price">1.499.000 VNĐ</p>
+                            <p>Thời gian: 3 giờ</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Kimono cao cấp</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Phụ kiện sang trọng</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Trang điểm chuyên nghiệp</li>
+                                <li><i class="fas fa-check text-success me-2"></i>20 ảnh đã chỉnh sửa</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Video ngắn</li>
+                            </ul>
+                            <button class="btn btn-primary w-100">Đặt gói này</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <img src="https://readdy.ai/api/search-image?query=elegant%20couple%20wearing%20matching%20traditional%20kimono%20in%20luxurious%20japanese%20studio%20with%20wooden%20elements%20professional%20photography&width=400&height=250&seq=service3&orientation=landscape"
+                            alt="Gói Đôi">
+                        <div class="card-body">
+                            <h5>Gói Đôi</h5>
+                            <p class="price">2.299.000 VNĐ</p>
+                            <p>Thời gian: 4 giờ</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>2 bộ Kimono cao cấp</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Phụ kiện đầy đủ</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Trang điểm cho 2 người</li>
+                                <li><i class="fas fa-check text-success me-2"></i>30 ảnh đã chỉnh sửa</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Album ảnh cao cấp</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100">Đặt gói này</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Bộ sưu tập</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <a href="https://readdy.ai/api/search-image?query=beautiful%20woman%20in%20red%20traditional%20kimono%20with%20cherry%20blossom%20patterns%20in%20elegant%20japanese%20studio%20professional%20photography&width=400&height=600&seq=gallery1&orientation=portrait"
+                            data-lightbox="gallery">
+                            <img src="https://readdy.ai/api/search-image?query=beautiful%20woman%20in%20red%20traditional%20kimono%20with%20cherry%20blossom%20patterns%20in%20elegant%20japanese%20studio%20professional%20photography&width=400&height=300&seq=gallery1&orientation=squarish"
+                                alt="Gallery 1">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <a href="https://readdy.ai/api/search-image?query=elegant%20woman%20wearing%20blue%20kimono%20with%20gold%20details%20in%20traditional%20japanese%20studio%20setting%20professional%20photography&width=400&height=600&seq=gallery2&orientation=portrait"
+                            data-lightbox="gallery">
+                            <img src="https://readdy.ai/api/search-image?query=elegant%20woman%20wearing%20blue%20kimono%20with%20gold%20details%20in%20traditional%20japanese%20studio%20setting%20professional%20photography&width=400&height=300&seq=gallery2&orientation=squarish"
+                                alt="Gallery 2">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <a href="https://readdy.ai/api/search-image?query=woman%20in%20white%20kimono%20with%20delicate%20floral%20patterns%20in%20minimalist%20japanese%20studio%20professional%20photography&width=400&height=600&seq=gallery3&orientation=portrait"
+                            data-lightbox="gallery">
+                            <img src="https://readdy.ai/api/search-image?query=woman%20in%20white%20kimono%20with%20delicate%20floral%20patterns%20in%20minimalist%20japanese%20studio%20professional%20photography&width=400&height=300&seq=gallery3&orientation=squarish"
+                                alt="Gallery 3">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <a href="https://readdy.ai/api/search-image?query=couple%20in%20matching%20traditional%20kimono%20posing%20in%20beautiful%20japanese%20studio%20with%20wooden%20elements%20professional%20photography&width=400&height=600&seq=gallery4&orientation=portrait"
+                            data-lightbox="gallery">
+                            <img src="https://readdy.ai/api/search-image?query=couple%20in%20matching%20traditional%20kimono%20posing%20in%20beautiful%20japanese%20studio%20with%20wooden%20elements%20professional%20photography&width=400&height=300&seq=gallery4&orientation=squarish"
+                                alt="Gallery 4">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <a href="https://readdy.ai/api/search-image?query=elegant%20woman%20in%20purple%20kimono%20with%20intricate%20patterns%20in%20luxury%20japanese%20studio%20professional%20photography&width=400&height=600&seq=gallery5&orientation=portrait"
+                            data-lightbox="gallery">
+                            <img src="https://readdy.ai/api/search-image?query=elegant%20woman%20in%20purple%20kimono%20with%20intricate%20patterns%20in%20luxury%20japanese%20studio%20professional%20photography&width=400&height=300&seq=gallery5&orientation=squarish"
+                                alt="Gallery 5">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <a href="https://readdy.ai/api/search-image?query=woman%20wearing%20traditional%20green%20kimono%20with%20golden%20obi%20in%20authentic%20japanese%20studio%20setting%20professional%20photography&width=400&height=600&seq=gallery6&orientation=portrait"
+                            data-lightbox="gallery">
+                            <img src="https://readdy.ai/api/search-image?query=woman%20wearing%20traditional%20green%20kimono%20with%20golden%20obi%20in%20authentic%20japanese%20studio%20setting%20professional%20photography&width=400&height=300&seq=gallery6&orientation=squarish"
+                                alt="Gallery 6">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Tin tức mới nhất</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="news-card">
+                        <img src="https://readdy.ai/api/search-image?query=new%20collection%20of%20traditional%20kimono%20displayed%20in%20elegant%20japanese%20studio%20with%20soft%20lighting%20professional%20photography&width=400&height=200&seq=news1&orientation=landscape"
+                            alt="Tin tức 1">
+                        <div class="card-body">
+                            <h5>Bộ sưu tập Kimono mùa xuân 2024</h5>
+                            <p class="text-muted">15/03/2024</p>
+                            <p>Khám phá bộ sưu tập Kimono mùa xuân mới nhất với những họa tiết hoa anh đào tinh tế và
+                                màu sắc tươi sáng.</p>
+                            <a href="#" class="btn btn-outline-primary">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="news-card">
+                        <img src="https://readdy.ai/api/search-image?query=makeup%20artist%20applying%20traditional%20japanese%20makeup%20to%20woman%20in%20kimono%20studio%20behind%20the%20scenes%20professional%20photography&width=400&height=200&seq=news2&orientation=landscape"
+                            alt="Tin tức 2">
+                        <div class="card-body">
+                            <h5>Bí quyết trang điểm Geisha truyền thống</h5>
+                            <p class="text-muted">10/03/2024</p>
+                            <p>Tìm hiểu về nghệ thuật trang điểm Geisha cổ điển và cách chúng tôi áp dụng vào dịch vụ
+                                của mình.</p>
+                            <a href="#" class="btn btn-outline-primary">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="news-card">
+                        <img src="https://readdy.ai/api/search-image?query=photography%20tips%20for%20kimono%20photoshoot%20in%20studio%20with%20professional%20lighting%20setup%20behind%20the%20scenes&width=400&height=200&seq=news3&orientation=landscape"
+                            alt="Tin tức 3">
+                        <div class="card-body">
+                            <h5>Tips chụp ảnh Kimono đẹp</h5>
+                            <p class="text-muted">05/03/2024</p>
+                            <p>Những mẹo nhỏ để có được những bức ảnh Kimono hoàn hảo từ các nhiếp ảnh gia chuyên
+                                nghiệp.</p>
+                            <a href="#" class="btn btn-outline-primary">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Đặt lịch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="booking-form">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="fullName" class="form-label">Họ và tên *</label>
+                                    <input type="text" class="form-control" id="fullName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Số điện thoại *</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="service" class="form-label">Gói dịch vụ *</label>
+                                    <select class="form-control" id="service" required>
+                                        <option value="">Chọn gói dịch vụ</option>
+                                        <option value="basic">Gói Cơ Bản - 899.000 VNĐ</option>
+                                        <option value="premium">Gói Cao Cấp - 1.499.000 VNĐ</option>
+                                        <option value="couple">Gói Đôi - 2.299.000 VNĐ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="date" class="form-label">Ngày mong muốn *</label>
+                                    <input type="date" class="form-control" id="date" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="time" class="form-label">Giờ mong muốn *</label>
+                                    <select class="form-control" id="time" required>
+                                        <option value="">Chọn giờ</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="16:00">16:00</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Ghi chú</label>
+                                <textarea class="form-control" id="message" rows="4"
+                                    placeholder="Yêu cầu đặc biệt hoặc câu hỏi..."></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg me-3">Gửi yêu cầu đặt lịch</button>
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-4">
+                            <p class="mb-3">Hoặc liên hệ trực tiếp qua:</p>
+                            <div class="d-flex justify-content-center gap-3">
+                                <a href="#" class="btn btn-success">
+                                    <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                                </a>
+                                <a href="#" class="btn btn-primary">
+                                    <i class="fab fa-facebook-messenger me-2"></i>Messenger
+                                </a>
+                                <a href="#" class="btn btn-success">
+                                    <i class="fab fa-line me-2"></i>Line
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-torii-gate me-2"></i>Sakura Studio</h5>
+                    <p>Trải nghiệm vẻ đẹp truyền thống Nhật Bản với dịch vụ cho thuê Kimono và chụp ảnh chuyên nghiệp.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-line"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Thông tin liên hệ</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>123 Đường Nguyễn Huệ, Quận 1, TP.HCM</p>
+                    <p><i class="fas fa-phone me-2"></i>+84 901 234 567</p>
+                    <p><i class="fas fa-envelope me-2"></i>info@sakurastudio.vn</p>
+                    <p><i class="fas fa-clock me-2"></i>Thứ 2 - Chủ nhật: 9:00 - 18:00</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Dịch vụ</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#services">Cho thuê Kimono</a></li>
+                        <li><a href="#services">Chụp ảnh chuyên nghiệp</a></li>
+                        <li><a href="#services">Trang điểm truyền thống</a></li>
+                        <li><a href="#gallery">Bộ sưu tập ảnh</a></li>
+                        <li><a href="#booking">Đặt lịch hẹn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2024 Sakura Studio. Tất cả quyền được bảo lưu.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="me-3">Chính sách bảo mật</a>
+                    <a href="#">Điều khoản sử dụng</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+    <script id="smooth-scroll">
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('a[href^="#"]');
+
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        const offsetTop = targetSection.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="navbar-scroll">
+        document.addEventListener('DOMContentLoaded', function () {
+            const navbar = document.querySelector('.navbar');
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) {
+                    navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                    navbar.style.backdropFilter = 'blur(10px)';
+                } else {
+                    navbar.style.backgroundColor = 'var(--primary-white)';
+                    navbar.style.backdropFilter = 'none';
+                }
+            });
+        });
+    </script>
+
+    <script id="form-handler">
+        document.addEventListener('DOMContentLoaded', function () {
+            const bookingForm = document.querySelector('#booking form');
+
+            bookingForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+
+                alert('Cảm ơn bạn đã đặt lịch! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.');
+
+                this.reset();
+            });
+        });
+    </script>
+
+    <script id="lightbox-config">
+        document.addEventListener('DOMContentLoaded', function () {
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true,
+                'albumLabel': 'Ảnh %1 của %2'
+            });
+        });
+    </script>
+</body>
+
+</html>
